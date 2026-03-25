@@ -12,7 +12,8 @@
     "lint": "eslint",
     "postinstall": "prisma generate",
     "db:push": "prisma db push",
-    "db:seed": "node prisma/seed.cjs"
+    "db:seed": "node prisma/seed.cjs",
+    "qa:login": "node scripts/verify-counselor-login.cjs"
   },
   "prisma": {
     "seed": "node prisma/seed.cjs"

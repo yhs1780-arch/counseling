@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 export default function OfficeLoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState("");
+  const [loginId, setLoginId] = useState("");
   const [password, setPassword] = useState("");
   const [err, setErr] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -19,7 +19,7 @@ export default function OfficeLoginPage() {
       const res = await fetch("/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email: loginId, password }),
       });
       const data = (await res.json()) as { error?: string };
       if (!res.ok) {
@@ -38,25 +38,30 @@ export default function OfficeLoginPage() {
   return (
     <div className="mx-auto flex min-h-screen max-w-md flex-col justify-center px-4">
       <h1 className="font-serif text-2xl text-[var(--text-primary)]">상담사 로그인</h1>
-      <p className="mt-2 text-sm text-[var(--text-muted)]">
-        계정이 있는 상담사·관리자만 입장할 수 있습니다. 첫 설치 시{" "}
-        <code className="text-xs text-[var(--gold)]"> npm run db:push && npm run db:seed </code>
+      <p className="mt-3 text-sm leading-relaxed text-[var(--text-muted)]">
+        계정이 있는 상담사·관리자만 입장할 수 있습니다.
       </p>
       <form onSubmit={onSubmit} className="mt-8 space-y-4">
         <div>
-          <label className="text-sm text-[var(--text-muted)]">이메일</label>
+          <label htmlFor="office-email" className="text-sm text-[var(--text-muted)]">
+            이메일
+          </label>
           <input
-            type="email"
+            id="office-email"
+            type="text"
             autoComplete="username"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={loginId}
+            onChange={(e) => setLoginId(e.target.value)}
             className="mt-1 w-full rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-elevated)] px-3 py-3 text-[var(--text-primary)]"
             required
           />
         </div>
         <div>
-          <label className="text-sm text-[var(--text-muted)]">비밀번호</label>
+          <label htmlFor="office-password" className="text-sm text-[var(--text-muted)]">
+            비밀번호
+          </label>
           <input
+            id="office-password"
             type="password"
             autoComplete="current-password"
             value={password}
