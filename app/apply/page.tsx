@@ -20,7 +20,7 @@ export default async function ApplyPage({ searchParams }: Props) {
   return (
     <>
       <Header />
-      <main className="flex-1 pt-24 pb-20">
+      <main className="flex-1 scroll-mt-20 pt-20 pb-14 sm:pt-24 sm:pb-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <Link
             href="/"
@@ -28,12 +28,12 @@ export default async function ApplyPage({ searchParams }: Props) {
           >
             ← 홈으로
           </Link>
-          <h1 className="mt-6 font-serif text-3xl font-semibold sm:text-4xl">
+          <h1 className="mt-5 font-serif text-2xl font-semibold sm:mt-6 sm:text-4xl">
             상담 <span className="gold-gradient-text">신청</span>
           </h1>
-          <p className="mt-4 max-w-xl text-[var(--text-muted)]">
-            {SITE.counselor} 상담사에게 1:1 상담을 요청합니다. 검토 후 연락
-            드리겠습니다.
+          <p className="mt-3 max-w-xl text-sm text-[var(--text-muted)] sm:text-base">
+            {SITE.counselor} {SITE.counselorTitle} 및 팀 상담사가 검토합니다. 고민
+            확인·기본 안내 후 계좌이체 확인 시 일정이 확정됩니다.
           </p>
           <div className="mt-10">
             <ConsultationForm initialPlanId={plan} />

@@ -1,43 +1,87 @@
 import { SITE } from "@/lib/site";
 
-/** 첨부 자격증과 대응하는 표기 (등록번호 등 민감 정보는 공개하지 않습니다). */
 const CREDENTIALS = [
-  { title: "심리분석사 1급", org: "한국직업능력검정협회 등 교육·시험 이수" },
-  { title: "심리상담사 1급", org: "한국교육인증평가원 등 공인 교육 과정" },
-  { title: "타로상담전문가 1급", org: "한국직업평가진흥협회 등 전문 과정" },
-  { title: "부부심리상담사 1급", org: "한국교육인증평가원 등 부부·관계 심리" },
-  { title: "연애심리상담사 1·2급", org: "한국심리교육협회 연애·관계 전문 교육" },
-  { title: "여성심리상담사 1·2급", org: "한국심리교육협회 여성 심리 전문 교육" },
-  { title: "성심리상담사 1·2급", org: "한국심리교육협회 성 심리 전문 교육" },
+  { title: "심리분석사 1급", org: "공인 교육·자격 과정 이수" },
+  { title: "심리상담사 1급", org: "한국교육인증평가원 등 연계 과정" },
+  { title: "타로상담전문가 1급", org: "직업·전문 교육기관 과정" },
+  { title: "부부심리상담사 1급", org: "부부·관계 심리 전문" },
+  { title: "연애심리상담사 1·2급", org: "연애·관계 영역" },
+  { title: "여성심리상담사 1·2급", org: "여성·정서 영역" },
+  { title: "성심리상담사 1·2급", org: "친밀·성 정서 영역" },
+];
+
+const TEAM_ROLES = [
+  "연애·재회 전문",
+  "부부·가족",
+  "타로·상징 해석",
+  "사주·시기 정리",
+  "성·여성 심리",
+  "직장·번아웃",
 ];
 
 export function Credentials() {
   return (
-    <section id="credentials" className="scroll-mt-24 py-20 sm:py-28">
+    <section id="credentials" className="scroll-mt-20 py-14 sm:scroll-mt-24 sm:py-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <h2 className="font-serif text-2xl font-semibold sm:text-4xl">
-          자격·<span className="gold-gradient-text">전문성</span>
+          전문가 · <span className="gold-gradient-text">자격</span>
         </h2>
-        <p className="mt-4 max-w-2xl text-[var(--text-muted)]">
-          {SITE.counselor} 상담사가 보유한 주요 자격과 교육 방향입니다. 실제
-          증빙 서류는 상담 계약 단계에서 안내드릴 수 있습니다.
-        </p>
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-6 grid gap-8 lg:grid-cols-2 lg:gap-12">
+          <div className="glass-panel rounded-3xl p-6 sm:p-8">
+            <p className="text-xs font-medium uppercase tracking-widest text-[var(--gold)]">
+              Representative
+            </p>
+            <h3 className="mt-2 font-serif text-xl text-[var(--text-primary)] sm:text-2xl">
+              {SITE.counselor} {SITE.counselorTitle}
+            </h3>
+            <p className="mt-4 text-sm leading-relaxed text-[var(--text-muted)]">
+              팀 내 <strong className="text-[var(--gold-light)]">가장 많은 공인 자격</strong>을
+              보유하고 있으며, 내부 교육·케이스 리뷰를 주도합니다. 타로·심리·관계
+              상담을 아우르는 <strong className="text-[var(--text-primary)]">복합 배경</strong>
+              을 바탕으로 난이도 높은 사연도 구조화합니다.
+            </p>
+          </div>
+          <div className="glass-panel rounded-3xl p-6 sm:p-8">
+            <p className="text-xs font-medium uppercase tracking-widest text-[var(--gold)]">
+              Counselor pool
+            </p>
+            <h3 className="mt-2 font-serif text-xl text-[var(--text-primary)] sm:text-2xl">
+              전문 상담사 인력
+            </h3>
+            <p className="mt-4 text-sm leading-relaxed text-[var(--text-muted)]">
+              아래 분야별로 상담사가 상주·대기 중이며, 일정과 주제에 맞춰{" "}
+              <strong className="text-[var(--text-primary)]">배정 또는 협업</strong>합니다.
+              모든 세션은 윤리 규정과 비밀 유지 원칙을 따릅니다.
+            </p>
+            <ul className="mt-4 flex flex-wrap gap-2">
+              {TEAM_ROLES.map((role) => (
+                <li
+                  key={role}
+                  className="rounded-full border border-[var(--border-subtle)] px-3 py-1 text-xs text-[var(--text-primary)]"
+                >
+                  {role}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <h3 className="mt-12 font-serif text-lg text-[var(--gold-light)] sm:text-xl">
+          대표 주요 자격 (요약)
+        </h3>
+        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 lg:gap-4">
           {CREDENTIALS.map((c) => (
             <div
               key={c.title}
-              className="glass-panel rounded-2xl border-l-2 border-l-[var(--gold)] p-5"
+              className="glass-panel rounded-2xl border-l-2 border-l-[var(--gold)] p-4 sm:p-5"
             >
-              <h3 className="font-medium text-[var(--text-primary)]">{c.title}</h3>
-              <p className="mt-2 text-xs leading-relaxed text-[var(--text-muted)]">
-                {c.org}
-              </p>
+              <h4 className="font-medium text-[var(--text-primary)]">{c.title}</h4>
+              <p className="mt-2 text-xs leading-relaxed text-[var(--text-muted)]">{c.org}</p>
             </div>
           ))}
         </div>
-        <p className="mt-8 text-xs text-[var(--text-muted)]">
-          ※ 자격증별 발급기관·과정명은 교육 과정에 따라 상이할 수 있으며, 위
-          목록은 제공해 주신 자료를 바탕으로 정리했습니다.
+        <p className="mt-6 text-[11px] text-[var(--text-muted)] sm:text-xs">
+          ※ 증빙·세부 과정명은 상담 계약 단계에서 별도 안내 가능합니다.
         </p>
       </div>
     </section>

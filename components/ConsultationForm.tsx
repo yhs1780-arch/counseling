@@ -2,14 +2,18 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { getPlanById, PRICING_PLANS, formatWon, type PlanId } from "@/lib/pricing";
+import { formatWon, getPlanById, PRICING_PLANS, type PlanId } from "@/lib/pricing";
 import { SITE } from "@/lib/site";
 
 const TOPICS = [
   "연애·재회",
   "부부·커플",
-  "타로 중심",
+  "채팅만 희망",
+  "전화(음성) 희망",
+  "타로·상징",
+  "사주·시기",
   "여성·성 심리",
+  "직장·스트레스",
   "기타",
 ] as const;
 
@@ -47,11 +51,13 @@ export function ConsultationForm({ initialPlanId }: Props) {
 
   if (submitted) {
     return (
-      <div className="glass-panel mx-auto max-w-lg rounded-3xl p-10 text-center">
-        <p className="font-serif text-xl text-[var(--gold-light)]">접수 완료</p>
+      <div className="glass-panel mx-auto max-w-lg rounded-3xl p-8 text-center sm:p-10">
+        <p className="font-serif text-lg text-[var(--gold-light)] sm:text-xl">접수 완료</p>
         <p className="mt-4 text-sm text-[var(--text-muted)]">
-          현재는 데모 모드입니다. 실제 배포 시 Formspree·카카오·전용 API 등으로
-          연결해 주세요. 연락처: {SITE.phone}
+          담당자가 순차 연락드립니다. 운영 시 Formspree·카카오·CRM 등과 연동해 주세요.
+        </p>
+        <p className="mt-3 text-xs text-[var(--text-muted)]">
+          입금: {SITE.bank.name} {SITE.bank.number} · 예금주 {SITE.bank.holder} · 문의 {SITE.phone}
         </p>
         <button
           type="button"
@@ -67,8 +73,13 @@ export function ConsultationForm({ initialPlanId }: Props) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="glass-panel mx-auto max-w-lg space-y-5 rounded-3xl p-8 sm:p-10"
+      className="glass-panel mx-auto max-w-lg space-y-4 rounded-3xl p-5 sm:space-y-5 sm:p-8 md:p-10"
     >
+      <div className="rounded-xl border border-[var(--border-subtle)] bg-white/[0.02] p-3 text-xs leading-relaxed text-[var(--text-muted)] sm:text-sm">
+        <strong className="text-[var(--gold-light)]">진행:</strong> 접수 후 고민을 확인하고 기본
+        안내를 드립니다. 합의된 금액은 <strong className="text-[var(--text-primary)]">계좌이체</strong>
+        로 입금해 주시면 일정이 확정됩니다.
+      </div>
       <div>
         <div className="flex flex-wrap items-center justify-between gap-2">
           <label htmlFor="plan" className="text-sm font-medium text-[var(--text-primary)]">
@@ -78,7 +89,7 @@ export function ConsultationForm({ initialPlanId }: Props) {
             href="/#pricing"
             className="text-xs text-[var(--gold)] underline-offset-4 hover:underline"
           >
-            요금표 보기
+            요금표
           </Link>
         </div>
         <select
@@ -86,12 +97,11 @@ export function ConsultationForm({ initialPlanId }: Props) {
           name="plan"
           value={plan}
           onChange={(e) => setPlan(e.target.value as PlanId)}
-          className="mt-2 w-full rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-deep)]/80 px-4 py-3 text-[var(--text-primary)] outline-none focus:border-[var(--gold)]/50"
+          className="mt-2 min-h-12 w-full rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-deep)]/80 px-3 py-3 text-sm text-[var(--text-primary)] outline-none focus:border-[var(--gold)]/50"
         >
           {PRICING_PLANS.map((p) => (
             <option key={p.id} value={p.id}>
-              {p.name} · {formatWon(p.price)}원
-              {p.featured ? " (대표)" : ""}
+              {p.name} · {formatWon(p.price)}원{p.featured ? " (대표)" : ""}
             </option>
           ))}
         </select>
@@ -108,7 +118,7 @@ export function ConsultationForm({ initialPlanId }: Props) {
           name="name"
           required
           autoComplete="name"
-          className="mt-2 w-full rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-deep)]/80 px-4 py-3 text-[var(--text-primary)] outline-none focus:border-[var(--gold)]/50"
+          className="mt-2 min-h-12 w-full rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-deep)]/80 px-3 py-3 text-[var(--text-primary)] outline-none focus:border-[var(--gold)]/50"
         />
       </div>
       <div>
@@ -120,9 +130,10 @@ export function ConsultationForm({ initialPlanId }: Props) {
           name="phone"
           required
           type="tel"
+          inputMode="tel"
           autoComplete="tel"
           placeholder="010-0000-0000"
-          className="mt-2 w-full rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-deep)]/80 px-4 py-3 text-[var(--text-primary)] outline-none focus:border-[var(--gold)]/50"
+          className="mt-2 min-h-12 w-full rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-deep)]/80 px-3 py-3 text-[var(--text-primary)] outline-none focus:border-[var(--gold)]/50"
         />
       </div>
       <div>
@@ -132,7 +143,7 @@ export function ConsultationForm({ initialPlanId }: Props) {
         <select
           id="topic"
           name="topic"
-          className="mt-2 w-full rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-deep)]/80 px-4 py-3 text-[var(--text-primary)] outline-none focus:border-[var(--gold)]/50"
+          className="mt-2 min-h-12 w-full rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-deep)]/80 px-3 py-3 text-[var(--text-primary)] outline-none focus:border-[var(--gold)]/50"
         >
           {TOPICS.map((t) => (
             <option key={t} value={t}>
@@ -143,24 +154,23 @@ export function ConsultationForm({ initialPlanId }: Props) {
       </div>
       <div>
         <label htmlFor="message" className="text-sm font-medium text-[var(--text-primary)]">
-          상담 받고 싶은 내용 <span className="text-red-400">*</span>
+          고민·상황 <span className="text-red-400">*</span>
         </label>
         <textarea
           id="message"
           name="message"
           required
-          rows={5}
-          placeholder="현재 상황을 편하게 적어 주세요."
-          className="mt-2 w-full resize-y rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-deep)]/80 px-4 py-3 text-[var(--text-primary)] outline-none focus:border-[var(--gold)]/50"
+          rows={6}
+          placeholder="현재 상황을 편하게 적어 주세요. 채팅만 희망하시면 함께 적어 주세요."
+          className="mt-2 w-full resize-y rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-deep)]/80 px-3 py-3 text-base text-[var(--text-primary)] outline-none focus:border-[var(--gold)]/50 sm:text-sm"
         />
       </div>
-      <p className="text-xs text-[var(--text-muted)]">
-        제출 시 개인정보 수집·이용에 동의한 것으로 간주합니다. (추후 개인정보
-        처리방침 페이지를 연결하세요.)
+      <p className="text-[11px] text-[var(--text-muted)] sm:text-xs">
+        제출 시 개인정보 수집·이용에 동의한 것으로 간주합니다.
       </p>
       <button
         type="submit"
-        className="btn-gold-shine w-full rounded-full py-4 text-base font-bold text-[var(--bg-deep)]"
+        className="btn-gold-shine min-h-12 w-full rounded-full py-4 text-base font-bold text-[var(--bg-deep)]"
       >
         신청하기
       </button>
