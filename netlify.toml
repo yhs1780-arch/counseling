@@ -1,4 +1,10 @@
 # Next.js on Netlify — https://docs.netlify.com/frameworks/next-js/overview/
+#
+# Netlify 프로젝트: counselingpl
+# Site ID: d15eb760-0825-45b4-9c9c-4c4d1f22f2ef
+# GitHub: https://github.com/yhs1780-arch/counseling (branch: main)
+# 대시보드에서 Build & deploy → Link repository 로 위 저장소를 연결하면 자동 배포됩니다.
+
 [build]
   command = "npm run build"
 
