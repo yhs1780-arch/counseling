@@ -4,10 +4,9 @@ export const SITE = {
   counselor: "박상훈",
   counselorTitle: "대표 상담사",
   description:
-    "채팅·전화·타로·사주까지. 검증된 상담사 팀과 LLM 기반 준비 도구로 관계·심리 고민을 함께 나눕니다.",
+    "채팅·전화·타로·사주까지. 검증된 전문가 팀이 관계와 마음의 무게를 함께 나눕니다.",
   phone: "010-0000-0000",
   email: "contact@example.com",
-  /** 입금 안내 — 실제 계좌로 교체 */
   bank: {
     name: "OO은행",
     holder: "마음결",
@@ -15,17 +14,13 @@ export const SITE = {
   },
 };
 
-/** 메인 신뢰 지표(운영 실적에 맞게 수정) */
 export const TRUST = {
   rating: 4.8,
   maxStars: 5,
-  /** 누적 상담 건수 */
   sessionsLabel: "누적 상담·세션",
   sessionsValue: "52,000+",
-  /** 내담자 수 */
   clientsLabel: "상담 경험 고객",
   clientsValue: "18,700+",
-  /** 후기·만족도 응답 */
   satisfactionLabel: "재이용·추천 의향",
   satisfactionValue: "94%",
   reviewSnippet: "네이버·카카오·자체 설문 기준 종합 만족 평점 4.8 / 5.0",

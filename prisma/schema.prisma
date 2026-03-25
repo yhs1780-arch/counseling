@@ -1,0 +1,36 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model CounselorAccount {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String?
+  createdAt    DateTime @default(now())
+}
+
+model ChatThread {
+  id          String        @id @default(cuid())
+  visitorKey  String        @unique
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  messages    ChatMessage[]
+}
+
+model ChatMessage {
+  id        String     @id @default(cuid())
+  threadId String
+  thread    ChatThread @relation(fields: [threadId], references: [id], onDelete: Cascade)
+  role      String
+  /// visitor | system | counselor
+  body      String
+  createdAt DateTime   @default(now())
+
+  @@index([threadId])
+}

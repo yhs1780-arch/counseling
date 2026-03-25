@@ -28,8 +28,8 @@ export function Footer() {
             <a href="/#faq" className="hover:text-[var(--gold-light)]">
               FAQ
             </a>
-            <Link href="/office" className="hover:text-[var(--gold-light)]">
-              상담사 도구
+            <Link href="/office/login" className="hover:text-[var(--gold-light)]">
+              상담사 전용
             </Link>
           </div>
         </div>

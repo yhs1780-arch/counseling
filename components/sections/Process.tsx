@@ -7,7 +7,7 @@ const STEPS = [
   {
     step: "02",
     title: "기본 안내",
-    desc: "상황 요약과 가능한 상담 방식(채팅/전화/문서/타로·사주)을 설명드립니다. 무리한 결제 권유 없이 선택권을 드립니다.",
+    desc: "상황 요약과 가능한 상담 방식을 설명드립니다. 선택권은 항상 내담자에게 있습니다.",
   },
   {
     step: "03",
@@ -17,7 +17,7 @@ const STEPS = [
   {
     step: "04",
     title: "본 상담 진행",
-    desc: "상담사는 사내 워크플로에 따라 내담자 서술을 정리하고, 필요 시 LLM 기반 초안을 참고하여 세션을 진행합니다(최종 판단·윤리 책임은 상담사).",
+    desc: "배정된 상담사가 100% 직접 세션을 진행합니다. 윤리와 비밀 보장을 최우선으로 합니다.",
   },
 ];
 
@@ -32,8 +32,8 @@ export function Process() {
           상담 <span className="gold-gradient-text">진행 순서</span>
         </h2>
         <p className="mt-3 max-w-2xl text-sm text-[var(--text-muted)] sm:text-base">
-          “고민 파악 → 기본 안내 → <strong className="text-[var(--text-primary)]">계좌이체</strong>
-          → 본 상담” 순으로 진행합니다.
+          고민 파악 → 기본 안내 → 결제 확정 → 본 상담. 상세 일정은 개별 안내
+          문자와 채널로 정리해 드립니다.
         </p>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {STEPS.map((s) => (

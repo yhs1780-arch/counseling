@@ -5,7 +5,6 @@ import {
   PLAN_CATEGORY_LABEL,
   PRICING_PLANS,
 } from "@/lib/pricing";
-import { SITE } from "@/lib/site";
 
 export function Pricing() {
   const grouped = plansByCategory();
@@ -21,16 +20,8 @@ export function Pricing() {
           상품·<span className="gold-gradient-text">요금 안내</span>
         </h2>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[var(--text-muted)] sm:text-base">
-          입문 리포트부터 프리미엄 음성, 채팅 패키지, 타로·사주 전용 세션까지{" "}
-          <strong className="text-[var(--text-primary)]">단계별로 선택</strong>할 수
-          있습니다. 최종 금액·부가세는 신청서 검토 후 문자·채팅으로 확정됩니다.
-        </p>
-        <p className="mt-3 rounded-xl border border-[var(--border-subtle)] bg-white/[0.02] px-4 py-3 text-xs leading-relaxed text-[var(--text-muted)] sm:text-sm">
-          <strong className="text-[var(--gold-light)]">결제:</strong>{" "}
-          고민 파악 및 기본 안내 후,{" "}
-          <strong className="text-[var(--text-primary)]">계좌이체</strong>(
-          {SITE.bank.name} {SITE.bank.number} / 예금주 {SITE.bank.holder}) 확인 시 본
-          상담 일정이 잡힙니다. (표기는 운영 계좌로 반드시 교체하세요.)
+          입문 리포트부터 음성·채팅 패키지, 타로·사주 세션까지 단계별로 선택할
+          수 있습니다. 부가세·최종 금액은 신청서 검토 후 개별 안내입니다.
         </p>
 
         <div className="mt-10 space-y-12">
@@ -101,8 +92,8 @@ export function Pricing() {
         </div>
 
         <p className="mt-10 text-center text-[11px] text-[var(--text-muted)] sm:text-xs">
-          부가세·쿠폰·지인 소개 할인 등은 별도 공지이며, 실제 서비스 범위는 신청 시
-          안내 메시지를 우선합니다. ({PRICING_PLANS.length}개 상품)
+          패키지 할인 등은 별도 공지이며, 결제·진행 순서는 하단 「진행 안내」를
+          참고해 주세요. ({PRICING_PLANS.length}개 상품)
         </p>
       </div>
     </section>

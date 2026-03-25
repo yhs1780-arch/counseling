@@ -5,12 +5,12 @@ import { Credentials } from "@/components/sections/Credentials";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { Faq } from "@/components/sections/Faq";
 import { Hero } from "@/components/sections/Hero";
-import { LlmAssist } from "@/components/sections/LlmAssist";
 import { Pricing } from "@/components/sections/Pricing";
 import { Process } from "@/components/sections/Process";
-import { Reviews } from "@/components/sections/Reviews";
+import { ReviewsSection } from "@/components/sections/ReviewsSection";
 import { Services } from "@/components/sections/Services";
 import { TrustBar } from "@/components/sections/TrustBar";
+import { TrustSignals } from "@/components/sections/TrustSignals";
 
 export default function Home() {
   return (
@@ -19,13 +19,13 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <TrustBar />
+        <TrustSignals />
         <About />
         <Services />
         <Pricing />
         <Credentials />
         <Process />
-        <LlmAssist />
-        <Reviews />
+        <ReviewsSection />
         <Faq />
         <CtaBand />
       </main>

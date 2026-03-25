@@ -13,3 +13,6 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+# 배포 후 Netlify 환경 변수: DATABASE_URL, COUNSELOR_JWT_SECRET, (선택) COUNSELOR_SEED_* 는 빌드 시 seed용
+# 서버리스에서는 SQLite 대신 호스티드 PostgreSQL 등을 사용하세요. 로컬은 DATABASE_URL=file:./dev.db → prisma/dev.db

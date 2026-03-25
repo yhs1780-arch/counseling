@@ -58,13 +58,6 @@ export function Header() {
                 {item.label}
               </Link>
             ))}
-            <Link
-              href="/office"
-              onClick={() => setMenu(false)}
-              className="rounded-lg px-3 py-3 text-sm text-[var(--gold)]/90"
-            >
-              상담사 도구 /office
-            </Link>
           </nav>
         </div>
       ) : null}
